@@ -72,9 +72,9 @@ func main() {
 	west.TurnLeft = func() *Direction { return south }
 	west.TurnRight = func() *Direction { return north }
 
-	puzzleInput = "R8, R4, R4, R8"
+	//puzzleInput = "R8, R4, R4, R8"
 	//puzzleInput = "R2, L2, R2, R2, R2"
-	//puzzleInput = "L4, R2, R4, L5, L3, L1, R4, R5, R1, R3, L3, L2, L2, R5, R1, L1, L2, R2, R2, L5, R5, R5, L2, R1, R2, L2, L4, L1, R5, R2, R1, R1, L2, L3, R2, L5, L186, L5, L3, R3, L5, R4, R2, L5, R1, R4, L1, L3, R3, R1, L1, R4, R2, L1, L4, R5, L1, R50, L4, R3, R78, R4, R2, L4, R3, L4, R4, L1, R5, L4, R1, L2, R3, L2, R5, R5, L4, L1, L2, R185, L5, R2, R1, L3, R4, L5, R2, R4, L3, R4, L2, L5, R1, R2, L2, L1, L2, R2, L2, R1, L5, L3, L4, L3, L4, L2, L5, L5, R2, L3, L4, R4, R4, R5, L4, L2, R4, L5, R3, R1, L1, R3, L2, R2, R1, R5, L4, R5, L3, R2, R3, R1, R4, L4, R1, R3, L5, L1, L3, R2, R1, R4, L4, R3, L3, R3, R2, L3, L3, R4, L2, R4, L3, L4, R5, R1, L1, R5, R3, R1, R3, R4, L1, R4, R3, R1, L5, L5, L4, R4, R3, L2, R1, R5, L3, R4, R5, L4, L5, R2"
+	puzzleInput = "R5, L2, L1, R1, R3, R3, L3, R3, R4, L2, R4, L4, R4, R3, L2, L1, L1, R2, R4, R4, L4, R3, L2, R1, L4, R1, R3, L5, L4, L5, R3, L3, L1, L1, R4, R2, R2, L1, L4, R191, R5, L2, R46, R3, L1, R74, L2, R2, R187, R3, R4, R1, L4, L4, L2, R4, L5, R4, R3, L2, L1, R3, R3, R3, R1, R1, L4, R4, R1, R5, R2, R1, R3, L4, L2, L2, R1, L3, R1, R3, L5, L3, R5, R3, R4, L1, R3, R2, R1, R2, L4, L1, L1, R3, L3, R4, L2, L4, L5, L5, L4, R2, R5, L4, R4, L2, R3, L4, L3, L5, R5, L4, L2, R3, R5, R5, L1, L4, R3, L1, R2, L5, L1, R4, L1, R5, R1, L4, L4, L4, R4, R3, L5, R1, L3, R4, R3, L2, L1, R1, R2, R2, R2, L1, L1, L2, L5, L3, L1"
 
 	commands := strings.Split(puzzleInput, ", ")
 	parsedCommand := &Command{}
@@ -89,7 +89,6 @@ func main() {
 	visited[origin.String()] = origin
 
 	for _, nextCommand = range commands {
-		fmt.Printf("Next command: %s\n", nextCommand)
 		parsedCommand = ParseInput(nextCommand)
 
 		if parsedCommand.TurnDirection == "left" {
@@ -108,8 +107,6 @@ func main() {
 
 			visited[currentPosition.String()] = currentPosition
 		}
-		// currentPosition.X += (currentDirection.DeltaX * parsedCommand.MoveDistance)
-		// currentPosition.Y += (currentDirection.DeltaY * parsedCommand.MoveDistance)
 	}
 
 	fmt.Printf("We are now %d blocks away from our starting point.\n", GetManhattanDistance(origin, currentPosition))
